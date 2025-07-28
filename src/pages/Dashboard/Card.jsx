@@ -23,7 +23,7 @@ const StatsCards = () => {
     const loadProfile = async () => {
       try {
         const profile = await fetchUserProfile();
-        setUserName(profile.full_name || "User");
+        setUserName(profile.first_name || "User");
       } catch (error) {
         console.error("Failed to fetch profile:", error.message);
       }

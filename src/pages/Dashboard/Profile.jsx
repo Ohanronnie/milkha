@@ -121,7 +121,7 @@ const Profile = () => {
             </div>
             <div className="text-center md:text-left mt-10">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2">
-                {profileData?.full_name || "User Name"}
+                {profileData?.first_name +" "+ profileData?.last_name || "User Name"}
                 <FontAwesomeIcon icon={faCheckCircle} className="text-blue-400" />
               </h1>
               <div className="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-2 mt-2 text-sm font-medium text-gray-800">

@@ -8,7 +8,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import ForgotPasswordModal from "../../components/ForgotPasswordModal";
-import {  postLogin } from "@/utils/api";// Adjust the import path as necessary
+import { postLogin } from "@/utils/api";// Adjust the import path as necessary
 
 const Login = () => {
   const [email, setEmail] = useState("");

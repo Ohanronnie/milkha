@@ -59,6 +59,7 @@ const SignUp = () => {
     password2: confirmPassword,
   });
   setLoading(false);
+  localStorage.setItem("verify_email", email);
   navigate("/verify-email");
 } catch (err) {
   setError(err.message);

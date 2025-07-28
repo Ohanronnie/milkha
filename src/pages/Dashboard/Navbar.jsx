@@ -36,8 +36,8 @@ const Navbar = () => {
       try {
         const res = await fetchUserProfile();
         setUser({
-          name: res.full_name || res.name || "User",
-          profilePic: res.photo || "/images/default-avatar.png",
+          name: res.first_name || res.name || "User",
+          profilePic: res.photo || "/images/avatar.png",
         });
       } catch (err) {
         console.error("Failed to fetch user:", err.message);

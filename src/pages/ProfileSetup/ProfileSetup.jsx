@@ -45,6 +45,7 @@ const ProfileSetup = () => {
           navigate("/dashboard");
         }
       };
+      loadProfile()
     },
     []
   );

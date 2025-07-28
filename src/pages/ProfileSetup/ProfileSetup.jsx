@@ -33,9 +33,20 @@ const ProfileSetup = () => {
   };
   useEffect(
     function () {
-      console.log(formData);
+      // Fetch User Profile
+      const loadProfile = async () => {
+        try {
+          const profile = await fetchUserProfile();
+          if(profile.first_name){
+            navigate("/dashboard")
+          }
+        } catch (error) {
+          console.error("Failed to fetch profile:", error.message);
+          navigate("/dashboard");
+        }
+      };
     },
-    [formData]
+    []
   );
   const nextSubStep = (data = {}) => {
     updateFormData(data);

@@ -78,7 +78,7 @@ const Search = () => {
 
   const filteredResults = profiles.filter((profile) => {
     return (
-      profile.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      profile.first_name?.toLowerCase?.().includes(searchTerm?.toLowerCase?.()) &&
       ageRangeMatch(profile) &&
       (filters.religion.length === 0 || filters.religion.includes(profile.religion)) &&
       (filters.location.length === 0 || filters.location.includes(profile.location)) &&

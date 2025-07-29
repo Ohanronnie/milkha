@@ -29,7 +29,8 @@ const AdminLogin = () => {
       });
 
       // ✅ You can customize this based on your backend response
-      localStorage.setItem("adminToken", res.token); // or res.access, etc.
+      localStorage.setItem("access_token", res.access_token); 
+      localStorage.setItem("refresh_token", res.refresh_token);// or res.access, etc.
       localStorage.setItem("adminLoggedIn", "true");
 
       navigate("/admin");

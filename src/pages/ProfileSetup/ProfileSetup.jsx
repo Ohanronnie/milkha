@@ -270,7 +270,7 @@ const ProfileSetup = () => {
 
       if (profileImage && profileImage instanceof File) {
         console.log("Uploading profile image:", profileImage);
-        await uploadProfilePhoto(profileImage);
+        await uploadProfilePhoto(profileImage, { is_primary: true });
         console.log("Profile image uploaded successfully");
       }
 

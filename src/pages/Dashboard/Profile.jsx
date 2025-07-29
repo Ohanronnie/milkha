@@ -9,6 +9,7 @@ import {
   fetchUserProfile,
   uploadProfilePhoto,
   deleteProfilePhoto,
+  get
 } from "@/utils/api";
 import { toast } from "react-toastify";
 import AOS from "aos";
@@ -31,11 +32,12 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const data = await fetchUserProfile();
+      
       setBio(data.bio);
       setProfileData(data);
+      setProfileImage(data.photos?.find(photo => photo?.is_primary == true)?.photo)
       setHobbies(data.hobbies);
-      setProfileImage(data.profileImage);
-      setGalleryPhotos(data.galleryPhotos || []);
+      setGalleryPhotos(data.photos || []);
     } catch {
       toast.error("Failed to fetch profile");
     }
@@ -46,10 +48,11 @@ const Profile = () => {
     if (file) {
       const formData = new FormData();
       formData.append("photo", file);
+      formData.append("is_primary", true)
       try {
         setLoading(true);
-        const res = await uploadProfilePhoto(formData);
-        setProfileImage(res.url);
+        const res = await uploadProfilePhoto(formData, { is_primary: true});
+        setProfileImage(res.photo);
         toast.success("Profile photo uploaded");
       } catch {
         toast.error("Upload failed");
@@ -61,6 +64,7 @@ const Profile = () => {
 
   const handlePhotoUpload = async (event, index) => {
     const file = event.target.files[0];
+    console.log(file)
     if (file) {
       const formData = new FormData();
       formData.append("photo", file);
@@ -150,7 +154,7 @@ const Profile = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {galleryPhotos.map((photo, i) => (
               <div key={i} className="relative rounded-lg overflow-hidden group border border-gray-200 hover:shadow-md transition-all duration-300">
-                <img src={photo.url || photo} alt="User" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                <img src={photo.photo || photo} alt="User" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                 <label htmlFor={`photo-upload-${i}`} className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-purple-100 transition">
                   <FontAwesomeIcon icon={faCamera} className="text-purple-600" />
                 </label>

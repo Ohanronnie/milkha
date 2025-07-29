@@ -60,7 +60,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
 
-    const token = localStorage.getItem("milkha_token");
+    const token = localStorage.getItem("access_token");
     if (!token) {
       navigate("/login");
       return;
